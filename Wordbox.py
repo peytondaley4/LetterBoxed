@@ -1,5 +1,5 @@
-with open('words_alpha.txt') as word_file:
-    wordset = set(word_file.read().split())
+with open('dictionary.txt') as word_file:
+    wordset = set(map(lambda x: x.lower(), word_file.read().split()))
 
 trunkset = set()
 finalset = set()
@@ -41,13 +41,15 @@ if __name__ == "__main__":
 	for i in range(len(sortlist)):
 		if len(set(sortlist[i])) == 12:
 			print("In 1: ", sortlist[i])
+			if len(sortlist[i]) == 12:
+				print("No Repeats^")
 			test = True
 	
 	if test:
 		quit()
 
-	for i in range(len(sortlist)-1):
-		for j in range(i+1, len(sortlist)):
+	for i in range(len(sortlist)):
+		for j in range(len(sortlist)):
 			if sortlist[i][-1] == sortlist[j][0]:
 				if len(set(sortlist[i]).union(set(sortlist[j]))) == 12:
 					print("In 2: ", sortlist[i], sortlist[j])
@@ -58,13 +60,15 @@ if __name__ == "__main__":
 	if test:
 		quit()
 
-	for i in range(len(sortlist)-2):
-		for j in range(i+1, len(sortlist)-1):
+	for i in range(len(sortlist)):
+		for j in range(len(sortlist)):
 			if sortlist[i][-1] == sortlist[j][0]:
-				for k in range(j+1, len(sortlist)):
+				for k in range(len(sortlist)):
 					if sortlist[j][-1] == sortlist[k][0]:
 						if len(set(sortlist[i]).union(set(sortlist[j]).union(set(sortlist[k])))) == 12:
 							print("in 3: ", sortlist[i], sortlist[j], sortlist[k])
+							if len(sortlist[i] + sortlist[j] + sortlist[k]) == 14:
+								print("No Repeats^")
 							test = True
 
 	if test:
