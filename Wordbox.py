@@ -1,6 +1,6 @@
 with open('dictionary.txt') as word_file:
-    wordset = set(map(lambda x: x.lower(), word_file.read().split()))
-
+    wordset = set(x.lower() for x in word_file.read().split())
+    
 trunkset = set()
 finalset = set()
 
